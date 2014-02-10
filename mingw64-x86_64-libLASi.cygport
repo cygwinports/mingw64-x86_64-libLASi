@@ -1,0 +1,27 @@
+CROSS_HOST="x86_64-w64-mingw32"
+inherit cross cmake
+
+NAME="mingw64-x86_64-libLASi"
+VERSION=1.1.1
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="PostScript C++ stream output interface library for Win64 toolchain"
+DESCRIPTION="libLASi is a library that provides a C++ stream output interface
+(with operator <<) for creating Postscript documents that can contain
+characters from any of the scripts and symbol blocks supported in Unicode and
+by Owen Taylor's Pango layout engine. The library accomodates right-to-left
+scripts such as Arabic and Hebrew as easily as left-to-right scripts. Indic and
+Indic-derived Complex Text Layout (CTL) scripts, such as Devanagari, Thai, Lao,
+and Tibetan are supported to the extent provided by Pango and by the OpenType
+fonts installed on your system. All of this is provided without need for any
+special configuration or layout calculation on the programmer's part."
+HOMEPAGE="http://unifont.org/lasi/"
+SRC_URI="mirror://sourceforge/lasi/libLASi-${VERSION}.tar.gz"
+SRC_DIR="libLASi-${VERSION}"
+
+src_install() {
+	cd ${B}
+	cyginstall
+
+	rm -fr ${D}${CROSS_DATADIR}/lasi${VERSION}/examples/
+}
